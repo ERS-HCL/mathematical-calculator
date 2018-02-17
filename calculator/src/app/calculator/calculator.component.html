@@ -1,0 +1,117 @@
+<div class="table-responsive tableWidth"> 
+  <table class="table-bordered">
+  <tr ><td colspan="4"
+  class="thinborder">
+  
+   
+  <div class="output " [(ngModel)]="output"
+  ngDefaultControl 
+  >
+  
+  {{output}}<br>{{symbol}}<br>
+  </div></td></tr>
+  <tr>
+  <div class="content">
+  <td><button
+  name="btnAllClear"
+  class="clearbutton" (click)='Allclear()'>AC</button></td>
+  
+  <td><button
+  name="btnClear" #btns
+  class="clearbutton" (click)='clear()'>C</button></td>
+  
+  <td><button
+  name="btnMulitply"
+  class="operationbutton" (click)='multiply()'>*</button></td>
+  
+  <td><button
+  name="btnPlus"
+  class="operationbutton" (click)='add()'>+</button></td>
+  
+  <tr>
+  
+  <td><button
+  name="btn7" #btn7
+  class="numberbutton"
+  value="7" (click)='clicked($event.target.value)'>7</button></td>
+  
+  <td><button
+  name="btn8" #btn8
+  class="numberbutton"
+  value="8" (click)='clicked($event.target.value)'>8</button></td>
+  
+  <td><button
+  name="btn9" #btn9
+  class="numberbutton"
+  value="9" (click)='clicked($event.target.value)'>9</button></td>
+  
+  <td><button
+  name="btnMinus"
+  class="operationbutton" (click)='subtract()'> -
+  </button>
+  
+  </tr>
+  
+  <tr>
+  
+  <td><button
+  name="btn4" #btn4
+  class="numberbutton"
+  value="4" (click)='clicked($event.target.value)'>4</button></td>
+  
+  <td><button
+  name="btn5" #btn5
+  class="numberbutton"
+  value="5" (click)='clicked($event.target.value)'>5</button></td>
+  
+  <td><button
+  name="btn6" #btn6
+  class="numberbutton"
+  value="6" (click)='clicked($event.target.value)'>6</button></td>
+  
+  <td><button
+  name="btnModulo" #btnModulo
+  class="operationbutton" (click)='modulo()'>%</button></td>
+  </tr>
+  <tr>
+  <td>
+  <button
+  name="btn1" #btn1
+  class="numberbutton"
+  value="1" (click)="clicked($event.target.value)">1</button></td>
+  <td><button
+  name="btn2" #btn2
+  class="numberbutton"
+  value="2" (click)="clicked($event.target.value)">2</button></td>
+  <td><button
+  name="btn3" #btn3
+  class="numberbutton"
+  value="3" (click)="clicked($event.target.value)">3</button></td>
+   <td><button
+  name="btnPlus"
+  class="operationbutton" (click)='divide()'>/</button></td>
+  </tr>
+  <tr>
+  <td><button
+  name="btn0" #btn0
+  class="numberbutton"
+  value="0" (click)='clicked($event.target.value)'>0</button></td>
+  <td><button
+  name="btnDot" #btnDot
+  class="numberbutton"
+  value="." (click)='clicked($event.target.value)'><b>.</b></button></td>
+  <td><button name="btnRoot" #btnR class="numberbutton" (click)='root()'>sqrt</button></td>
+  
+  <td
+  rowspan="2"><button
+  name="btnEquals"
+  class="result" (click)='calculate()'>=</button></td>
+  </tr>
+  <tr><td><button name="btn^" #btn^ class="numberbutton" (click)='pow()'>^</button></td>
+  <td><button name="btnSqr" #btnSqr class="numberbutton" (click)='square()'>x<sup>2</sup></button></td>
+  <td><button name="btnCube" #btnC class="numberbutton" (click)='cube()'>x<sup>3</sup></button></td>
+  </div>
+  </tr>
+  </table>
+  </div>
+  

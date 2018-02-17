@@ -1,0 +1,81 @@
+
+.thinborder {
+
+  border:2px solid orange;
+  background-color:black;
+  
+  
+  }
+  
+  .tableWidth{
+    width:340px;
+  }
+  .result{
+  
+  
+  background-color:orange;
+  
+  color: white;
+  
+  width:80px;
+  
+  height:100px;
+  
+  }
+  .content{
+    border:1px solid orange;
+  }
+  
+  .numberbutton {
+  
+  width:80px;
+  
+  height:50px;
+  
+  background-color: white;
+  
+  }
+  
+  
+  .operationbutton {
+  
+  width:80px;
+  
+  height:50px;
+  
+  background-color: white;
+  
+  }
+  
+  
+  .clearbutton {
+  
+  color:orange;
+  
+  width:80px;
+  
+  height:50px;
+  
+  background-color: white;
+  
+  }
+  
+  
+  .output {
+  
+  
+  color:orange;
+  
+  font-family: Courier;
+  
+  padding:0
+  10px 0 
+  0;
+  
+  text-align: right;
+  
+  font-size:30px;
+  
+  
+  }
+  
