@@ -4,7 +4,7 @@ This is a simple component for performing arithmetic calculations using angular.
     <img  alt="calci" src="images/allclear.png" class="img-responsive">
 </p>
 
-To preview demo of to do list project, [Click here](https://angular-x4kzo1.stackblitz.io)
+To preview demo of to do list project, [Click here](https://stackblitz.com/edit/angular-x4kzo1-x5xs9e?embed=1&file=src/index.html&hideNavigation=1&view=preview)
 
 * we can do addition,subtraction,multiplication,division operations.
 <p><img src="\images\multi.png"></p>
