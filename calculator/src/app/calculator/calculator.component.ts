@@ -1,662 +1,590 @@
-import { Component, OnInit , Output, EventEmitter,ViewEncapsulation} 
-from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation }
+  from '@angular/core';
 
 
 
 @Component({
 
-selector: 'app-calculator',
+  selector: 'app-calculator',
 
-templateUrl: './calculator.component.html',
+  templateUrl: './calculator.component.html',
 
-styleUrls: ['./calculator.component.css'],
-encapsulation: ViewEncapsulation.Emulated,
+  styleUrls: ['./calculator.component.css'],
+  encapsulation: ViewEncapsulation.Emulated,
 
 })
 
 export class CalculatorComponent
-implements OnInit {
+  implements OnInit {
 
- @Output() click = new EventEmitter();
+  @Output() click = new EventEmitter();
 
-constructor() {
-  
- }
+  constructor() {
 
+  }
 
 
-ngOnInit() {
-this.click.emit(this.output);
-}
 
-public btn;
+  ngOnInit() {
+    this.click.emit(this.output);
+  }
 
+  public btn;
 
-public newNumber:boolean=true;
 
-public pastOperation=null;
+  public newNumber: boolean = true;
 
-public presentTotal=0;
+  public pastOperation = null;
 
-public pastTotal=null;
+  public presentTotal = 0;
 
-public lastOperation=null;
+  public pastTotal = null;
 
-public symbol="";
+  public lastOperation = null;
 
-public ADD = 
-"adding";
+  public symbol = "";
 
-public SUBTRACT = 
-"subtracting";
+  public ADD =
+  "adding";
 
-public MULTIPLY="multiply";
+  public SUBTRACT =
+  "subtracting";
 
-public addSymbol= 
-"+";
+  public MULTIPLY = "multiply";
 
-public subtractSymbol = 
-"-";
+  public addSymbol =
+  "+";
 
-public multiplySymbol="*";
+  public subtractSymbol =
+  "-";
 
-public DIVIDE='divide';
+  public multiplySymbol = "*";
 
-public divisionSymbol="/";
+  public DIVIDE = 'divide';
 
-public MODULO='modulo';
+  public divisionSymbol = "/";
 
-public moduloSymbol="%";
-public POW='pow';
+  public MODULO = 'modulo';
 
-public powSymbol="^";
-public ROOT='root';
+  public moduloSymbol = "%";
+  public POW = 'pow';
 
-public rootSymbol="sqrt";
-public SQUARE='square';
+  public powSymbol = "^";
+  public ROOT = 'root';
 
-public sqrSymbol="sqrt";
-public CUBE='cube';
+  public rootSymbol = "sqrt";
+  public SQUARE = 'square';
 
-public cubeSymbol="cube";
-public output='0';
+  public sqrSymbol = "square";
+  public CUBE = 'cube';
 
-public lastValue=null;
+  public cubeSymbol = "cube";
+  public output = '0';
 
-public token;
-public toSqrt;
-clicked(btn){
-this.click.emit(this.output);
-this.btn=btn;
+  public lastValue = null;
+  public value1;
+  public token;
+  public toSqrt;
+  clicked(btn) {
+    this.click.emit(this.output);
+    this.btn = btn;
 
 
-if(this.newNumber) {
+    if (this.newNumber) {
 
-this.output=btn;
+      this.output = btn;
 
 
-this.newNumber = 
-false;
+      this.newNumber =
+        false;
 
 
-} else {
+    } else {
 
 
-this.output=String(this.output)+String(btn);
+      this.output = String(this.output) + String(btn);
 
-}
+    }
 
-this.pastTotal = 
-this.toNumber(this.output);
+    this.pastTotal =
+      this.toNumber(this.output);
+    //alert(this.pastTotal);
 
-}
-
-
-add(){
-  this.click.emit(this.output);
-
-this.token=this.ADD;
-
-this.operations();
-
-
-}
-
-subtract(){
-this.click.emit(this.output);
-this.token=this.SUBTRACT;
-
-this.operations();
-
-
-}
-
-multiply(){
-this.click.emit(this.output);
-this.token=this.MULTIPLY;
-
-this.operations();
-
-
-}
-
-divide(){
-this.click.emit(this.output);
-this.token=this.DIVIDE;
-
-this.operations();
-
-
-}
-
-modulo(){
-this.click.emit(this.output);
-this.token=this.MODULO;
-
-this.operations();
-
-
-}
-pow(){
-this.click.emit(this.output);
-this.token=this.POW;
-
-this.operations();
-
-
-}
-root(){
-  this.click.emit(this.output);
-this.token=this.ROOT;
-
-this.operations();
-}
-square(){
- this.click.emit(this.output);
-this.token=this.SQUARE;
-
-this.operations();
-}
-cube(){
- this.click.emit(this.output);
-this.token=this.CUBE;
-
-this.operations();
-}
-
-operations(){
-this.click.emit(this.output);
-if(this.pastTotal) {
-
-if(this.presentTotal &&
-this.pastOperation == 
-this.ADD ) {
-
-this.presentTotal += 
-this.pastTotal;
-
-} else if(this.presentTotal &&
-this.pastOperation == 
-this.SUBTRACT) {
-
-this.presentTotal -= 
-this.pastTotal;
-
-}
-
-else if(this.presentTotal &&
-this.pastOperation == 
-this.MULTIPLY) {
-
-this.presentTotal *= 
-this.pastTotal;
-
-}
-
-else if(this.presentTotal &&
-this.pastOperation == 
-this.DIVIDE) {
-
-this.presentTotal /= 
-this.pastTotal;
-
-}
-
-else if(this.presentTotal &&
-this.pastOperation == 
-this.MODULO) {
-
-this.presentTotal %= 
-this.pastTotal;
-
-}
-else if(this.presentTotal &&
-this.pastOperation == 
-this.ROOT) {
-
-this.presentTotal=Math.sqrt(this.presentTotal);
-
-}
-else if(this.presentTotal &&
-this.pastOperation == 
-this.POW) {
-
-this.presentTotal = Math.pow(this.presentTotal,this.pastTotal);
-
-}
-else if(this.presentTotal &&
-this.pastOperation == 
-this.SQUARE) {
-
-this.presentTotal = Math.pow(this.presentTotal,2);
-
-}
-else if(this.presentTotal &&
-this.pastOperation == 
-this.CUBE) {
-
-this.presentTotal = Math.pow(this.presentTotal,3);
-
-}
-else {
-
-this.presentTotal = 
-this.pastTotal;
-
-}
-
-} 
+  }
+  calculation(operation) {
+    this.click.emit(this.output);
+    this.token = operation;
+    this.operations();
+  }
+
+  operations() {
+    this.click.emit(this.output);
+
+    switch (this.pastTotal!=0) {
+      
+      case (this.presentTotal && this.pastOperation ==
+        this.ADD): {
+          
+          this.presentTotal+=
+            this.pastTotal;
+          break;
+        }
+      case (this.presentTotal &&
+        this.pastOperation ==
+        this.SUBTRACT): {
+
+          this.presentTotal-=
+            this.pastTotal;
+          break;
+        }
+      case (this.presentTotal &&
+        this.pastOperation ==
+        this.MULTIPLY): {
+
+          this.presentTotal*=
+            this.pastTotal;
+break;
+        }
+      case (this.presentTotal &&
+        this.pastOperation ==
+        this.DIVIDE): {
+
+          this.presentTotal/=
+            this.pastTotal;
+break;
+        }
+      case (this.presentTotal &&
+        this.pastOperation ==
+        this.MODULO): {
+
+          this.presentTotal%=
+            this.pastTotal;
+break;
+        }
+      case (this.presentTotal &&
+        this.pastOperation ==
+        this.ROOT): {
+
+          this.presentTotal = Math.sqrt(this.presentTotal);
+          break;
+        }
+      case (this.presentTotal &&
+        this.pastOperation ==
+        this.POW): {
+
+          this.presentTotal = Math.pow(this.presentTotal, this.pastTotal);
+          break;
+
+        }
+      case (this.presentTotal &&
+        this.pastOperation ==
+        this.SQUARE): {
+
+          this.presentTotal = Math.pow(this.presentTotal, 2);
+break;
+        }
+      case (this.presentTotal &&
+        this.pastOperation ==
+        this.CUBE): {
+
+          this.presentTotal = Math.pow(this.presentTotal, 3);
+break;}
+default:{
+this.presentTotal =this.pastTotal;
+
+        }
+
+    }
 
 this.setsymbol(this.token);
 
-this.setOutput(String(this.presentTotal));
+    this.setOutput(String(this.presentTotal));
 
-this.pastOperation = 
-this.token;
+    this.pastOperation =
+      this.token;
 
-this.newNumber = 
-true;
+    this.newNumber =
+      true;
 
-this.pastTotal = 
-null;
+    this.pastTotal =
+      null;
 
-}
+  }
 
-setsymbol(operation) {
-this.click.emit(this.output);
-if(operation == 
-this.ADD) {
+  setsymbol(operation) {
+    this.click.emit(this.output);
+    if (operation ==
+      this.ADD) {
 
-this.symbol = 
-this.addSymbol;
+      this.symbol =
+        this.addSymbol;
 
-} else if (operation ==
-this.SUBTRACT) {
+    } else if (operation ==
+      this.SUBTRACT) {
 
-this.symbol = 
-this.subtractSymbol;
+      this.symbol =
+        this.subtractSymbol;
 
-} else if (operation ==
-this.MULTIPLY) {
+    } else if (operation ==
+      this.MULTIPLY) {
 
-this.symbol = 
-this.multiplySymbol;
+      this.symbol =
+        this.multiplySymbol;
 
-} 
+    }
 
-else if (operation ==
-this.DIVIDE) {
+    else if (operation ==
+      this.DIVIDE) {
 
-this.symbol = 
-this.divisionSymbol;
+      this.symbol =
+        this.divisionSymbol;
 
-} 
+    }
 
-else if (operation ==
-this.MODULO) {
+    else if (operation ==
+      this.MODULO) {
 
-this.symbol = 
-this.moduloSymbol;
+      this.symbol =
+        this.moduloSymbol;
 
-} 
-else if (operation ==
-this.POW) {
+    }
+    else if (operation ==
+      this.POW) {
 
-this.symbol = 
-this.powSymbol;
+      this.symbol =
+        this.powSymbol;
 
-} 
-else if (operation ==
-this.ROOT) {
+    }
+    else if (operation ==
+      this.ROOT) {
 
-this.symbol = 
-this.rootSymbol;
+      this.symbol =
+        this.rootSymbol;
 
-} 
-else if (operation ==
-this.SQUARE) {
+    }
+    else if (operation ==
+      this.SQUARE) {
 
-this.symbol = 
-this.sqrSymbol;
+      this.symbol =
+        this.sqrSymbol;
 
-} 
-else if (operation ==
-this.CUBE) {
+    }
+    else if (operation ==
+      this.CUBE) {
 
-this.symbol = 
-this.cubeSymbol;
+      this.symbol =
+        this.cubeSymbol;
 
-} 
+    }
 
-else {
+    else {
 
-this.symbol = 
-"";
+      this.symbol =
+        "";
 
-}
+    }
 
-}
+  }
 
-calculate() {
-this.click.emit(this.output);
+  calculate() {
+    this.click.emit(this.output);
 
-if(!this.newNumber) {
+    if (!this.newNumber) {
 
-this.pastTotal =this.toNumber(this.output);
+      this.pastTotal = this.toNumber(this.output);
 
-this.lastValue = 
-this.pastTotal;
+      this.lastValue =
+        this.pastTotal;
 
-} 
+    }
 
-if(this.pastOperation ==this.ADD) {
+    if (this.pastOperation == this.ADD) {
 
-this.presentTotal += 
-this.pastTotal;
+      this.presentTotal +=
+        this.pastTotal;
 
-this.lastOperation = 
-this.ADD;
+      this.lastOperation =
+        this.ADD;
 
-} else if(this.pastOperation ==this.SUBTRACT) {
+    } else if (this.pastOperation == this.SUBTRACT) {
 
-this.presentTotal -= 
-this.pastTotal;
+      this.presentTotal -=
+        this.pastTotal;
 
-this.lastOperation = 
-this.SUBTRACT;
+      this.lastOperation =
+        this.SUBTRACT;
 
-}
+    }
 
-else if(this.pastOperation ==this.MULTIPLY) {
+    else if (this.pastOperation == this.MULTIPLY) {
 
-this.presentTotal *= 
-this.pastTotal;
+      this.presentTotal *=
+        this.pastTotal;
 
-this.lastOperation = 
-this.MULTIPLY;
+      this.lastOperation =
+        this.MULTIPLY;
 
-} 
+    }
 
-else if(this.pastOperation ==this.DIVIDE) {
+    else if (this.pastOperation == this.DIVIDE) {
 
-this.presentTotal /= 
-this.pastTotal;
+      this.presentTotal /=
+        this.pastTotal;
 
-this.lastOperation = 
-this.DIVIDE;
+      this.lastOperation =
+        this.DIVIDE;
 
-}
+    }
 
-else if(this.pastOperation ==this.MODULO) {
+    else if (this.pastOperation == this.MODULO) {
 
-this.presentTotal %= 
-this.pastTotal;
+      this.presentTotal %=
+        this.pastTotal;
 
-this.lastOperation = 
-this.MODULO;
+      this.lastOperation =
+        this.MODULO;
 
-}
-else if(this.pastOperation ==this.POW) {
+    }
+    else if (this.pastOperation == this.POW) {
 
-this.presentTotal = Math.pow(this.presentTotal,this.pastTotal);
+      this.presentTotal = Math.pow(this.presentTotal, this.pastTotal);
 
 
-this.lastOperation = 
-this.POW;
+      this.lastOperation =
+        this.POW;
 
-}
-else if(this.pastOperation ==this.ROOT) {
-this.presentTotal=Math.sqrt(this.presentTotal);
-this.lastOperation = 
-this.ROOT;
+    }
+    else if (this.pastOperation == this.ROOT) {
+      this.presentTotal = Math.sqrt(this.presentTotal);
+      this.lastOperation =
+        this.ROOT;
 
-}
-else if(this.pastOperation ==this.SQUARE) {
+    }
+    else if (this.pastOperation == this.SQUARE) {
 
-this.presentTotal = Math.pow(this.presentTotal,2);
+      this.presentTotal = Math.pow(this.presentTotal, 2);
 
 
-this.lastOperation = 
-this.SQUARE;
+      this.lastOperation =
+        this.SQUARE;
 
-}
-else if(this.pastOperation ==this.CUBE) {
+    }
+    else if (this.pastOperation == this.CUBE) {
 
-this.presentTotal = Math.pow(this.presentTotal,3);
+      this.presentTotal = Math.pow(this.presentTotal, 3);
 
 
-this.lastOperation = 
-this.CUBE;
+      this.lastOperation =
+        this.CUBE;
 
-}
-else {
+    }
+    else {
 
-if(this.lastOperation) {
+      if (this.lastOperation) {
 
-if(this.lastOperation ==this.ADD) {
+        if (this.lastOperation == this.ADD) {
 
-if(this.presentTotal) {
+          if (this.presentTotal) {
 
-this.presentTotal+=this.lastValue;
+            this.presentTotal += this.lastValue;
 
-} else {
+          } else {
 
-this.presentTotal = 
-0;
+            this.presentTotal =
+              0;
 
-}
+          }
 
-} else if(this.lastOperation ==
-this.SUBTRACT) {
+        } else if (this.lastOperation ==
+          this.SUBTRACT) {
 
-if(this.presentTotal) {
+          if (this.presentTotal) {
 
-this.presentTotal-=this.lastValue;
+            this.presentTotal -= this.lastValue;
 
-} else {
+          } else {
 
-this.presentTotal = 
-0;
+            this.presentTotal =
+              0;
 
-}
+          }
 
-}
+        }
 
-else if(this.lastOperation ==
-this.MULTIPLY) {
+        else if (this.lastOperation ==
+          this.MULTIPLY) {
 
-if(this.presentTotal) {
+          if (this.presentTotal) {
 
-this.presentTotal*=this.lastValue;
+            this.presentTotal *= this.lastValue;
 
-} else {
+          } else {
 
-this.presentTotal =0;
+            this.presentTotal = 0;
 
-}
+          }
 
-}
+        }
 
-else if(this.lastOperation ==
-this.DIVIDE) {
+        else if (this.lastOperation ==
+          this.DIVIDE) {
 
-if(this.presentTotal) {
+          if (this.presentTotal) {
 
-this.presentTotal/=this.lastValue;
+            this.presentTotal /= this.lastValue;
 
-} else {
+          } else {
 
-this.presentTotal = 0;
+            this.presentTotal = 0;
 
-}
+          }
 
-}
+        }
 
-else if(this.lastOperation ==
-this.MODULO) {
+        else if (this.lastOperation ==
+          this.MODULO) {
 
-if(this.presentTotal) {
-  this.presentTotal%=this.lastValue;
+          if (this.presentTotal) {
+            this.presentTotal %= this.lastValue;
 
-} else {
+          } else {
 
-this.presentTotal = 0;
+            this.presentTotal = 0;
 
-}
+          }
 
 
-}
-else if(this.lastOperation ==
-this.POW) {
+        }
+        else if (this.lastOperation ==
+          this.POW) {
 
-if(this.presentTotal) {
-  this.presentTotal = Math.pow(this.presentTotal,this.lastValue);
+          if (this.presentTotal) {
+            this.presentTotal = Math.pow(this.presentTotal, this.lastValue);
 
-} else {
+          } else {
 
-this.presentTotal = 0;
+            this.presentTotal = 0;
 
-}
+          }
 
 
-}
-else if(this.lastOperation ==
-this.ROOT) {
+        }
+        else if (this.lastOperation ==
+          this.ROOT) {
 
-if(this.presentTotal) {
-  this.presentTotal = Math.sqrt(this.lastValue);
+          if (this.presentTotal) {
+            this.presentTotal = Math.sqrt(this.lastValue);
 
-} else {
+          } else {
 
-this.presentTotal = 0;
+            this.presentTotal = 0;
 
-}
+          }
 
 
-}
-else if(this.lastOperation ==
-this.SQUARE) {
+        }
+        else if (this.lastOperation ==
+          this.SQUARE) {
 
-if(this.presentTotal) {
-  this.presentTotal = Math.pow(this.presentTotal,2);
+          if (this.presentTotal) {
+            this.presentTotal = Math.pow(this.presentTotal, 2);
 
-} else {
+          } else {
 
-this.presentTotal = 0;
+            this.presentTotal = 0;
 
-}
+          }
 
 
-}
-else if(this.lastOperation ==
-this.CUBE) {
+        }
+        else if (this.lastOperation ==
+          this.CUBE) {
 
-if(this.presentTotal) {
- this.presentTotal = Math.pow(this.presentTotal,3);
+          if (this.presentTotal) {
+            this.presentTotal = Math.pow(this.presentTotal, 3);
 
-} else {
+          } else {
 
-this.presentTotal = 0;
+            this.presentTotal = 0;
 
-}
+          }
 
 
-}
-} else {
+        }
+      } else {
 
-this.presentTotal = 0;
+        this.presentTotal = 0;
 
-}
+      }
 
-}
+    }
 
-this.setOutput(this.presentTotal);
+    this.setOutput(this.presentTotal);
 
-this.setsymbol("");
+    this.setsymbol("");
 
-this.pastOperation = 
-null;
+    this.pastOperation =
+      null;
 
-this.pastTotal = 
-null;
+    this.pastTotal =
+      null;
 
-}
+  }
 
 
-Allclear(){
-this.click.emit(this.output);
-this.presentTotal = 
-null;
+  Allclear() {
+    this.click.emit(this.output);
+    this.presentTotal =
+      null;
 
-this.pastTotal = 
-null;
+    this.pastTotal =
+      null;
 
-this.pastOperation = 
-null;
-this.symbol="";
-this.setOutput("0");
+    this.pastOperation =
+      null;
+    this.symbol = "";
+    this.setOutput("0");
 
-}
+  }
 
-clear(){
- 
-this.click.emit(this.output);
-if(this.symbol){
-  this.symbol="";
-  
-}else if(!this.symbol){
-var str=this.output;
-this.output=str.slice(0,-1);
+  clear() {
 
+    this.click.emit(this.output);
+    if (this.symbol) {
+      this.symbol = "";
 
+    } else if (!this.symbol) {
+      var str = this.output;
+      this.output = str.slice(0, -1);
 
-this.pastTotal=this.toNumber(this.output);
-}
 
-}
 
-setOutput(outputString) {
-this.click.emit(this.output);
-this.output = outputString;
+      this.pastTotal = this.toNumber(this.output);
+    }
 
-this.newNumber = 
-true;
+  }
 
+  setOutput(outputString) {
+    this.click.emit(this.output);
+    this.output = outputString;
 
-}
+    this.newNumber =
+      true;
 
-toNumber(numberString) {
-this.click.emit(this.output);
-var result =0;
 
-if(numberString) {
+  }
 
-result = numberString*1;
+  toNumber(numberString) {
+    this.click.emit(this.output);
+    let result = 0;
 
-}
+    if (numberString) {
 
-return result;
+      result = numberString * 1;
 
-}
+    }
 
+    return result;
+
+  }
 }
