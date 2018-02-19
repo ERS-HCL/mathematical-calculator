@@ -1,5 +1,11 @@
 # Mathematical Calculator in Angular.
 This is a simple component for performing arithmetic calculations using angular.
+<p align="center">
+    <img  alt="calci" src="images/allclear.png" class="img-responsive">
+</p>
+
+**To preview demo of to do list project:** [Click here](https://stackblitz.com/edit/angular-x4kzo1-dl65im?embed=1&file=src/app/calculator.component.html&hideNavigation=1&view=preview)
+
 ## Using the complete angular project
 Download the src folder and install the required packages and run the application.
 ### Installing
@@ -13,11 +19,9 @@ Download the src folder and install the required packages and run the applicatio
 ```
 > ng serve
 ```
-<p align="center">
-    <img  alt="calci" src="images/allclear.png" class="img-responsive">
-</p>
 
-To preview demo of to do list project, [Click here](https://stackblitz.com/edit/angular-x4kzo1-dl65im?embed=1&file=src/app/calculator.component.html&hideNavigation=1&view=preview)
+
+
 
 * we can do addition,subtraction,multiplication,division operations.
 
@@ -26,7 +30,7 @@ To preview demo of to do list project, [Click here](https://stackblitz.com/edit/
 
 
 * we can know square and cube of a number.
-<p><img src="\images\cube.png"></p>
+
 
 * we can erase everything at a time by clicking AC(All Clear) and we can erase one by one which works as back space by clicking C(clear).
 
