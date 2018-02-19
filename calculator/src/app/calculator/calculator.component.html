@@ -22,11 +22,11 @@
   
   <td><button
   name="btnMulitply"
-  class="operationbutton" (click)='multiply()'>*</button></td>
+  class="operationbutton" (click)='calculation(MULTIPLY)'>*</button></td>
   
   <td><button
   name="btnPlus"
-  class="operationbutton" (click)='add()'>+</button></td>
+  class="operationbutton" (click)='calculation(ADD)'>+</button></td>
   
   <tr>
   
@@ -47,7 +47,7 @@
   
   <td><button
   name="btnMinus"
-  class="operationbutton" (click)='subtract()'> -
+  class="operationbutton" (click)='calculation(SUBTRACT)'> -
   </button>
   
   </tr>
@@ -71,7 +71,7 @@
   
   <td><button
   name="btnModulo" #btnModulo
-  class="operationbutton" (click)='modulo()'>%</button></td>
+  class="operationbutton" (click)='calculation(MODULO)'>%</button></td>
   </tr>
   <tr>
   <td>
@@ -89,7 +89,7 @@
   value="3" (click)="clicked($event.target.value)">3</button></td>
    <td><button
   name="btnPlus"
-  class="operationbutton" (click)='divide()'>/</button></td>
+  class="operationbutton" (click)='calculation(DIVIDE)'>/</button></td>
   </tr>
   <tr>
   <td><button
@@ -100,16 +100,16 @@
   name="btnDot" #btnDot
   class="numberbutton"
   value="." (click)='clicked($event.target.value)'><b>.</b></button></td>
-  <td><button name="btnRoot" #btnR class="numberbutton" (click)='root()'>sqrt</button></td>
+  <td><button name="btnRoot" #btnR class="numberbutton" (click)='calculation(ROOT)'>sqrt</button></td>
   
   <td
   rowspan="2"><button
   name="btnEquals"
   class="result" (click)='calculate()'>=</button></td>
   </tr>
-  <tr><td><button name="btn^" #btn^ class="numberbutton" (click)='pow()'>^</button></td>
-  <td><button name="btnSqr" #btnSqr class="numberbutton" (click)='square()'>x<sup>2</sup></button></td>
-  <td><button name="btnCube" #btnC class="numberbutton" (click)='cube()'>x<sup>3</sup></button></td>
+  <tr><td><button name="btn^" #btn^ class="numberbutton" (click)='calculation(POW)'>^</button></td>
+  <td><button name="btnSqr" #btnSqr class="numberbutton" (click)='calculation(SQUARE)'>x<sup>2</sup></button></td>
+  <td><button name="btnCube" #btnC class="numberbutton" (click)='calculation(CUBE)'>x<sup>3</sup></button></td>
   </div>
   </tr>
   </table>
