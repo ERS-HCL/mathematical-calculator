@@ -17,7 +17,7 @@ Download the src folder and install the required packages and run the applicatio
     <img  alt="calci" src="images/allclear.png" class="img-responsive">
 </p>
 
-To preview demo of to do list project, [Click here](https://stackblitz.com/edit/angular-x4kzo1-x5xs9e?embed=1&file=src/index.html&hideNavigation=1&view=preview)
+To preview demo of to do list project, [Click here](https://stackblitz.com/edit/angular-x4kzo1-dl65im?embed=1&file=src/app/calculator.component.html&hideNavigation=1&view=preview)
 
 * we can do addition,subtraction,multiplication,division operations.
 
