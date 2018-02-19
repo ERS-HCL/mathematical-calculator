@@ -20,7 +20,7 @@ To preview demo of to do list project, [Click here](https://stackblitz.com/edit/
 
 # OutputDecorator
  @output is used to give required output to user.
-EventEmitter is used such that whenever some event will be called user will get result. 
+EventEmitter is used so that whenever some event will be called user will get result. 
 ```
 show(number){
 console.log(number);
@@ -28,7 +28,7 @@ console.log(number);
 ```
 This method gives you the result.
 #### <app-calculator (click)="show($event)"></app-calculator>
-Here click is an output event name.
+Here click is the output event name.
 
 ### Installing
 
