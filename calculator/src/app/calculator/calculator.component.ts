@@ -75,7 +75,7 @@ public ROOT='root';
 public rootSymbol="root";
 public SQUARE='square';
 
-public sqrSymbol="sqrt";
+public sqrSymbol="square";
 public CUBE='cube';
 
 public cubeSymbol="cube";
