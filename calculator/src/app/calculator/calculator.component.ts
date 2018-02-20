@@ -1,382 +1,377 @@
-import { Component, OnInit , Output, EventEmitter,ViewEncapsulation} 
-from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation }
+  from '@angular/core';
 
 
 
 @Component({
 
-selector: 'app-calculator',
+  selector: 'app-calculator',
 
-templateUrl: './calculator.component.html',
+  templateUrl: './calculator.component.html',
 
-styleUrls: ['./calculator.component.css'],
-encapsulation: ViewEncapsulation.Emulated,
+  styleUrls: ['./calculator.component.css'],
+  encapsulation: ViewEncapsulation.Emulated,
 
 })
 
 export class CalculatorComponent
-implements OnInit {
+  implements OnInit {
 
- @Output() click = new EventEmitter();
+  @Output() click = new EventEmitter();
 
-constructor() {
-  
- }
+  constructor() {
 
+  }
 
 
-ngOnInit() {
-this.click.emit(this.output);
-}
 
-public btn;
+  ngOnInit() {
+    this.click.emit(this.output);
+  }
 
+  public btn;
 
-public newNumber:boolean=true;
 
-public pastTotalOperation=null;
+  public newNumber: boolean = true;
 
-public pastTotal=0;
+  public pastTotalOperation = null;
 
-public presentTotal=null;
+  public pastTotal = 0;
 
-public lastOperation=null;
+  public presentTotal = null;
 
-public symbol="";
+  public lastOperation = null;
 
-public ADD = 
-"adding";
+  public symbol = "";
 
-public SUBTRACT = 
-"subtracting";
+  public ADD =
+  "adding";
 
-public MULTIPLY="multiply";
+  public SUBTRACT =
+  "subtracting";
 
-public addSymbol= 
-"+";
+  public MULTIPLY = "multiply";
 
-public subtractSymbol = 
-"-";
+  public addSymbol =
+  "+";
 
-public multiplySymbol="*";
+  public subtractSymbol =
+  "-";
 
-public DIVIDE='divide';
+  public multiplySymbol = "*";
 
-public divisionSymbol="/";
+  public DIVIDE = 'divide';
 
-public MODULO='modulo';
+  public divisionSymbol = "/";
 
-public moduloSymbol="%";
-public POW='pow';
+  public MODULO = 'modulo';
 
-public powSymbol="^";
-public ROOT='root';
+  public moduloSymbol = "%";
+  public POW = 'pow';
 
-public rootSymbol="root";
-public SQUARE='square';
+  public powSymbol = "^";
+  public ROOT = 'root';
 
-public sqrSymbol="square";
-public CUBE='cube';
+  public rootSymbol = "root";
+  public SQUARE = 'square';
 
-public cubeSymbol="cube";
-public output='0';
+  public sqrSymbol = "square";
+  public CUBE = 'cube';
 
-public token;
-public toSqrt;
-clicked(btn){
-this.click.emit(this.output);
-this.btn=btn;
+  public cubeSymbol = "cube";
+  public output = '0';
 
+  public token;
+  public toSqrt;
+  clicked(btn) {
+    this.click.emit(this.output);
+    this.btn = btn;
 
-if(this.newNumber) {
 
-this.output=btn;
-this.newNumber = false;
-} else {
-this.output=String(this.output)+String(btn);
+    if (this.newNumber) {
 
-}
+      this.output = btn;
+      this.newNumber = false;
+    } else {
+      this.output = String(this.output) + String(btn);
 
-this.presentTotal = this.toNumber(this.output);
+    }
 
-}
-calculation(operation){
-this.click.emit(this.output);
-this.token=operation;
-this.operations();
-}
+    this.presentTotal = this.toNumber(this.output);
 
-operations(){
-this.click.emit(this.output);
-switch(this.presentTotal!=null) {
+  }
+  calculation(operation) {
+    this.click.emit(this.output);
+    this.token = operation;
+    this.operations();
+  }
 
-case (this.pastTotal &&this.pastTotalOperation == this.ADD ) :{
+  operations() {
+    this.click.emit(this.output);
+    switch (this.pastTotalOperation) {
 
-this.pastTotal += this.presentTotal;
-break;
+      case "adding": {
+        this.pastTotal += this.presentTotal;
+        break;
 
-} case (this.pastTotal &&this.pastTotalOperation == this.SUBTRACT) :{
+      } case "subtracting": {
+        this.pastTotal -= this.presentTotal;
+        break;
+      }
 
-this.pastTotal -= this.presentTotal;
-break;
-}
+      case "multiply": {
 
-case (this.pastTotal &&this.pastTotalOperation == this.MULTIPLY) :{
+        this.pastTotal *= this.presentTotal;
+        break;
+      }
 
-this.pastTotal *= this.presentTotal;
-break;
-}
+      case "divide": {
 
-case (this.pastTotal &&this.pastTotalOperation == this.DIVIDE) :{
+        this.pastTotal /= this.presentTotal;
+        break;
+      }
 
-this.pastTotal /= this.presentTotal;
-break;
-}
+      case "modulo": {
 
-case (this.pastTotal &&this.pastTotalOperation == this.MODULO) :{
+        this.pastTotal %= this.presentTotal;
+        break;
 
-this.pastTotal %= this.presentTotal;
-break;
+      }
+      case "root": {
 
-}
-case (this.pastTotal &&this.pastTotalOperation == this.ROOT) :{
+        this.pastTotal = Math.sqrt(this.pastTotal);
+        break;
+      }
+      case "pow": {
 
-this.pastTotal=Math.sqrt(this.pastTotal);
-break;
-}
-case (this.pastTotal &&this.pastTotalOperation == this.POW) :{
+        this.pastTotal = Math.pow(this.pastTotal, this.presentTotal);
+        break;
+      }
+      case "square": {
 
-this.pastTotal = Math.pow(this.pastTotal,this.presentTotal);
-break;
-}
-case (this.pastTotal &&this.pastTotalOperation == this.SQUARE) :{
+        this.pastTotal = Math.pow(this.pastTotal, 2);
+        break;
+      }
+      case "cube": {
 
-this.pastTotal = Math.pow(this.pastTotal,2);
-break;
-}
-case (this.pastTotal &&this.pastTotalOperation == this.CUBE) :{
+        this.pastTotal = Math.pow(this.pastTotal, 3);
+        break;
+      }
+      default: {
+        this.pastTotal = this.presentTotal;
 
-this.pastTotal = Math.pow(this.pastTotal,3);
-break;
-}
-default:{
+      }
 
-this.pastTotal = this.presentTotal;
+    }
 
-}
+    this.setsymbol(this.token);
 
-} 
+    this.setOutput(String(this.pastTotal));
 
-this.setsymbol(this.token);
+    this.pastTotalOperation = this.token;
 
-this.setOutput(String(this.pastTotal));
+    this.newNumber = true;
 
-this.pastTotalOperation = this.token;
+    this.presentTotal = null;
 
-this.newNumber = true;
+  }
 
-this.presentTotal = null;
+  setsymbol(operation) {
+    this.click.emit(this.output);
+    switch (operation) {
+      case "adding": {
 
-}
+        this.symbol = this.addSymbol;
+        break;
 
-setsymbol(operation) {
-this.click.emit(this.output);
-switch(operation!=null){
-case (operation == this.ADD): {
+      } case "subtracting": {
 
-this.symbol = this.addSymbol;
-break;
+        this.symbol = this.subtractSymbol;
+        break;
 
-} case (operation ==this.SUBTRACT): {
+      } case "multiply": {
 
-this.symbol = this.subtractSymbol;
-break;
+        this.symbol = this.multiplySymbol;
+        break;
+      }
 
-} case(operation ==this.MULTIPLY) :{
+      case "divide": {
 
-this.symbol = this.multiplySymbol;
-break;
-} 
+        this.symbol = this.divisionSymbol;
+        break;
+      }
 
-case (operation ==this.DIVIDE): {
+      case "modulo": {
 
-this.symbol = this.divisionSymbol;
-break;
-} 
+        this.symbol = this.moduloSymbol;
+        break;
 
-case (operation ==this.MODULO): {
+      }
+      case "pow": {
 
-this.symbol = this.moduloSymbol;
-break;
+        this.symbol = this.powSymbol;
+        break;
+      }
+      case "root": {
 
-} 
-case (operation ==this.POW): {
+        this.symbol = this.rootSymbol;
+        break;
+      }
+      case "square": {
 
-this.symbol = this.powSymbol;
-break;
-} 
-case (operation ==this.ROOT): {
+          this.symbol = this.sqrSymbol;
+          break;
+        }
+      case "cube": {
 
-this.symbol = this.rootSymbol;
-break;
-} 
-case (operation ==
-this.SQUARE): {
+        this.symbol = this.cubeSymbol;
+        break;
+      }
 
-this.symbol = this.sqrSymbol;
-break;
-} 
-case (operation ==this.CUBE): {
+      default: {
 
-this.symbol = this.cubeSymbol;
-break;
-} 
+        this.symbol = "";
+        break;
 
-default: {
+      }
+    }
+  }
 
-this.symbol = "";
-break;
+  calculate() {
+    this.click.emit(this.output);
 
-}
-}
-}
+    if (!this.newNumber) {
+      this.presentTotal = this.toNumber(this.output);
 
-calculate() {
-this.click.emit(this.output);
+    }
+    switch (this.pastTotalOperation) {
+      case "adding": {
 
-if(!this.newNumber) {
+        this.pastTotal += this.presentTotal;
 
-this.presentTotal =this.toNumber(this.output);
+        this.lastOperation = this.ADD;
+        break;
 
-} 
-switch(this.pastTotalOperation!=null){
-case (this.pastTotalOperation ==this.ADD): {
+      } case "subtracting": {
 
-this.pastTotal += this.presentTotal;
+        this.pastTotal -= this.presentTotal;
 
-this.lastOperation = this.ADD;
-break;
+        break;
 
-} case (this.pastTotalOperation ==this.SUBTRACT) :{
+      }
 
-this.pastTotal -= this.presentTotal;
+      case "multiply": {
 
-break;
+        this.pastTotal *= this.presentTotal;
 
-}
+        break;
 
-case (this.pastTotalOperation ==this.MULTIPLY): {
+      }
 
-this.pastTotal *= this.presentTotal;
+      case "divide": {
 
-break;
+        this.pastTotal /= this.presentTotal;
+        break;
 
-} 
 
-case (this.pastTotalOperation ==this.DIVIDE) :{
+      }
 
-this.pastTotal /= this.presentTotal;
-break;
+      case "modulo": {
 
+        this.pastTotal %= this.presentTotal;
 
-}
+        break;
 
-case (this.pastTotalOperation ==this.MODULO) :{
+      }
+      case "pow": {
 
-this.pastTotal %= this.presentTotal;
+        this.pastTotal = Math.pow(this.pastTotal, this.presentTotal);
 
-break;
+        break;
 
-}
-case (this.pastTotalOperation ==this.POW) :{
 
-this.pastTotal = Math.pow(this.pastTotal,this.presentTotal);
+      }
+      case "root": {
+        this.pastTotal = Math.sqrt(this.pastTotal);
+        break;
+      }
+      case "square": {
 
-break;
+        this.pastTotal = Math.pow(this.pastTotal, 2);
 
+        break;
 
-}
-case (this.pastTotalOperation ==this.ROOT): {
-this.pastTotal=Math.sqrt(this.pastTotal);
-break;
-}
-case (this.pastTotalOperation ==this.SQUARE): {
 
-this.pastTotal = Math.pow(this.pastTotal,2);
+      }
+      case "cube": {
 
-break;
+        this.pastTotal = Math.pow(this.pastTotal, 3);
+        break;
 
 
-}
-case (this.pastTotalOperation ==this.CUBE): {
 
-this.pastTotal = Math.pow(this.pastTotal,3);
-break;
+      }
+    }
+    this.setOutput(this.pastTotal);
 
+    this.setsymbol("");
 
+    this.pastTotalOperation = 0;
 
-}
-}
-this.setOutput(this.pastTotal);
+    this.presentTotal = this.pastTotal;
 
-this.setsymbol("");
+  }
+  Allclear() {
+    this.click.emit(this.output);
+    this.pastTotal = null;
 
-this.pastTotalOperation = null;
+    this.presentTotal = null;
 
-this.presentTotal = null;
+    this.pastTotalOperation = null;
+    this.symbol = "";
+    this.setOutput("0");
 
-}
-Allclear(){
-this.click.emit(this.output);
-this.pastTotal = null;
+  }
 
-this.presentTotal = null;
+  clear() {
 
-this.pastTotalOperation = null;
-this.symbol="";
-this.setOutput("0");
+    this.click.emit(this.output);
+    if (this.symbol) {
+      this.symbol = "";
 
-}
+    } else if (!this.symbol) {
+      var str = this.output;
+      this.output = str.slice(0, -1);
 
-clear(){
- 
-this.click.emit(this.output);
-if(this.symbol){
-  this.symbol="";
-  
-}else if(!this.symbol){
-var str=this.output;
-this.output=str.slice(0,-1);
 
 
+      this.presentTotal = this.toNumber(this.output);
+    }
 
-this.presentTotal=this.toNumber(this.output);
-}
+  }
 
-}
+  setOutput(outputString) {
+    this.click.emit(this.output);
+    this.output = outputString;
 
-setOutput(outputString) {
-this.click.emit(this.output);
-this.output = outputString;
+    this.newNumber =
+      true;
 
-this.newNumber = 
-true;
 
+  }
 
-}
+  toNumber(numberString) {
+    this.click.emit(this.output);
+    var result = 0;
 
-toNumber(numberString) {
-this.click.emit(this.output);
-var result =0;
+    if (numberString) {
 
-if(numberString) {
+      result = numberString * 1;
 
-result = numberString*1;
+    }
 
-}
+    return result;
 
-return result;
-
-}
+  }
 
 }
